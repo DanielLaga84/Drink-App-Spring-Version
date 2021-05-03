@@ -16,10 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder() //checking
-                .username("user").password("password").roles("USER").build();
+                .username("user").password("user").roles("USER").build();
 
         UserDetails admin = User.withDefaultPasswordEncoder() //checking
-                .username("user").password("password").roles("USER").build();
+                .username("admin").password("admin").roles("ADMIN").build();
 
         return new InMemoryUserDetailsManager(user, admin);
     }
