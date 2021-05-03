@@ -11,7 +11,7 @@ public class TemplateController {
         return "age-query";
     }
 
-    @GetMapping("/adult_check")
+    @GetMapping("/adult-check")
     public String adultCheck(@RequestParam("age") String age) {
         if (age.equals("18+")) {
             return "index";
@@ -24,5 +24,13 @@ public class TemplateController {
     public String goodbye() {
         return "goodbye";
     }
+    @GetMapping("/navigation")
+    public String navigation(@RequestParam("navigator") String navigator) {
+        if (navigator.equals("Login")) {
+            return "login";
+        } else
+            return "register";
+    }
+
 }
 
