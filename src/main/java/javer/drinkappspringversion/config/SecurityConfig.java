@@ -27,8 +27,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/**").hasRole("admin").and()
-                .formLogin().permitAll().and().logout().permitAll();
+                .antMatchers(HttpMethod.GET, "/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")
+                .antMatchers("/js/**").permitAll()
+                .and()
+                .formLogin().permitAll()
+                .and()
+                .logout().permitAll();
     }
 }
