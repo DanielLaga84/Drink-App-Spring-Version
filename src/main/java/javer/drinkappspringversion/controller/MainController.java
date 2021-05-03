@@ -11,50 +11,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
-public class TemplateController {
-
+public class MainController {
     private final UserService userService;
-
-    @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        return UserRegistrationDto.builder().build();
-    }
 
     @GetMapping("/")
     public String start() {
+        userService.createAdmin();
         return "age-query";
     }
+
+    @GetMapping("/home")
+    public String home() {
+        return "index";
+    }
+
     @GetMapping("/adult-check")
     public String adultCheck(@RequestParam("age") String age) {
         if (age.equals("18+")) {
-            return "index";
+            return "redirect:/home";
         } else {
             return "redirect:goodbye";
         }
     }
+
     @GetMapping("/goodbye")
     public String goodbye() {
         return "goodbye";
     }
+
     @GetMapping("/navigation")
     public String navigation(@RequestParam("navigator") String navigator) {
-        if (navigator.equals("Login")) {
-            return "redirect:login";
+        if (navigator.equals("Admin")) {
+            return "redirect:admin-panel";
         } else
-            return "redirect:register";
+            return "redirect:user-view";
     }
+
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
-
-    @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") UserRegistrationDto user) {
-        userService.save(user);
-        return "redirect:register";
     }
 }

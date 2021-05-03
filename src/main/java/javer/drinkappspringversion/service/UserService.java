@@ -10,4 +10,5 @@ public interface UserService extends UserDetailsService {
 
     User get(String email);
 
+    void createAdmin();
 }
