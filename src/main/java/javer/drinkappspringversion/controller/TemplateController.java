@@ -14,7 +14,7 @@ public class TemplateController {
     @GetMapping("/adult-check")
     public String adultCheck(@RequestParam("age") String age) {
         if (age.equals("18+")) {
-            return "index";
+            return "redirect:index";
         } else {
             return "redirect:goodbye";
         }

@@ -38,7 +38,7 @@ section {
     margin: 24px 0 0 0;
 }
 
-.container1 {
+.drink {
     flex: 0 0 45.33333%;
     max-width: 90%;
     text-align: center;
@@ -173,6 +173,7 @@ section {
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
+    height: 220px;
 }
 
 .statement p {
@@ -222,14 +223,14 @@ section.gallery {
     transition: all 0.5s;
 }
 
-.add-drink1 {
+.drink-recipe {
     position: static;
     margin: 0;
     flex: 0 0 45%;
     max-width: 90%;
     text-align: center;
     transition: all 0.5s;
-    list-style:none;
+    list-style: none;
 }
 
 
@@ -284,8 +285,8 @@ section.gallery {
 
 .social-links li {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 80px;
+    height: 80px;
     line-height: 30px;
     border-radius: 20%;
     margin-right: 50px;
@@ -322,7 +323,7 @@ section.gallery {
 }
 
 .page-footer p {
-    margin: 0;
+    margin: 20px;
 }
 
 .navigation {
