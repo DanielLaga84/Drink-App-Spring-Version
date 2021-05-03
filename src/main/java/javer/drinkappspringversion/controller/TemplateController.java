@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TemplateController {
     @GetMapping("/")
     public String start() {
-        return "age-query";
+        return "age_query";
     }
 
     @GetMapping("/adult_check")
