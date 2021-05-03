@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TemplateController {
     @GetMapping("/")
     public String start() {
-        return "age_query";
+        return "age-query";
     }
 
     @GetMapping("/adult_check")
     public String adultCheck(@RequestParam("age") String age) {
         if (age.equals("18+")) {
-            return "GOOD";
+            return "index";
         } else {
             return "redirect:goodbye";
         }
