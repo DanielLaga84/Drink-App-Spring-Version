@@ -1,0 +1,17 @@
+
+<div th:fragment="navi-index" xmlns:th="http://www.thymeleaf.org">
+    <nav class="navigation">
+        <div class="container">
+            <ul>
+                <li><a href="#about">About application</a></li>
+                <li><a href="#features">Drinks</a></li>
+                <li><a href="#quotes">Recipes</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contacts</a></li>
+
+                <!--dropdown navigation-->
+                <li th:replace="fragments/dropdown-navigation :: dropdown-navigation"></li>
+            </ul>
+        </div>
+    </nav>
+</div>

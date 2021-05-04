@@ -1,0 +1,24 @@
+<div th:fragment="navi-admin" xmlns:th="http://www.thymeleaf.org">
+    <nav class="navigation">
+        <div class="container">
+            <ul>
+                <li><a href="#load">Load file</a></li>
+                <li><a href="#add">Add drink</a></li>
+                <li><a href="#remove">Remove drink</a></li>
+
+                <!--dropdown navigation-->
+                <li th:replace="fragments/dropdown-navigation :: dropdown-navigation"></li>
+
+                <!--drink searcher-->
+                <div th:replace="fragments/search :: search"></div>
+
+                <!--                <form action="/drink" method="get">-->
+                <!--                    <input name="name" list="drink-names" class="search" type="text" placeholder="Search.."-->
+                <!--                           onfocus="this.placeholder=''"-->
+                <!--                           onblur="this.placeholder='Search...'" required autocomplete="off">-->
+                <!--                    <button type="submit"><i class="fa fa-search"></i></button>-->
+                <!--                </form>-->
+            </ul>
+        </div>
+    </nav>
+</div>
