@@ -17,17 +17,17 @@ public class IngredientDto {
     private String measure;
 
     public static IngredientDto ingredientToDto(Ingredient ingredient) {
-        IngredientDto ingredientDto = new IngredientDto();
-        ingredientDto.setId(ingredient.getId());
-        ingredientDto.setName(ingredient.getName());
-        ingredientDto.setMeasure(ingredient.getMeasure());
-        return ingredientDto;
+        IngredientDto ingredientDTO = new IngredientDto();
+        ingredientDTO.setId(ingredient.getId());
+        ingredientDTO.setName(ingredient.getName());
+        ingredientDTO.setMeasure(ingredient.getMeasure());
+        return ingredientDTO;
     }
 
-    public static Ingredient dtoToIngredient(IngredientDto ingredientDto) {
+    public static Ingredient dtoToIngredient(IngredientDto ingredientDTO) {
         Ingredient ingredient = new Ingredient();
-        ingredient.setName(ingredientDto.getName());
-        ingredient.setMeasure(ingredientDto.getMeasure());
+        ingredient.setName(ingredientDTO.getName());
+        ingredient.setMeasure(ingredientDTO.getMeasure());
         return ingredient;
     }
 }

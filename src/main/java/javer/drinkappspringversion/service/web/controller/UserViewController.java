@@ -20,10 +20,10 @@ public class UserViewController {
     @GetMapping("/user-view")
     public String showUserView(@RequestParam Integer page, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("drinks",drinkService.getAllDrinks());
-        model.addAttribute("pageNumbers", drinkService.countsPages(12));
-        model.addAttribute("requestDrinks", drinkService.getRequestDrinkList(page,12));
-        model.addAttribute("user",userService.get(authentication.getName()));
+        model.addAttribute("drinks", drinkService.getAllDrinks());
+        model.addAttribute("pageNumbers", drinkService.countsPages(8));
+        model.addAttribute("requestDrinks", drinkService.getRequestDrinkList(page, 8));
+        model.addAttribute("user", userService.get(authentication.getName()));
         return "user-view";
     }
 }

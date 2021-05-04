@@ -43,33 +43,31 @@ public class DrinkDto {
 
         List<IngredientDto> ingredientDtoList = new ArrayList<>();
         drink.getIngredientList().forEach(ingredient -> {
-            IngredientDto ingredientDto = IngredientDto.ingredientToDto(ingredient);
-            ingredientDtoList.add(ingredientDto);
+            IngredientDto ingredientDTO = IngredientDto.ingredientToDto(ingredient);
+            ingredientDtoList.add(ingredientDTO);
         });
         drinkDto.setIngredientList(ingredientDtoList);
         return drinkDto;
     }
 
-    public static Drink DtoToDrink(DrinkDto drinkDto) {
+    public static Drink dtoToDrink(DrinkDto drinkDTO) {
         Drink drink = new Drink();
-        drink.setName(drinkDto.getName());
-        drink.setIsCustom(drinkDto.getIsCustom());
-        drink.setIsApproved(drinkDto.getIsApproved());
-        drink.setRecipe(drinkDto.getRecipe());
-        drink.setDrinkType(drinkDto.getDrinkType());
-        drink.setGlassType(drinkDto.getGlassType());
-        drink.setModificationDate(drinkDto.getModificationDate());
-        drink.setImageUrl(drinkDto.getImageUrl());
-        drink.setCategory(drinkDto.getCategory());
+        drink.setName(drinkDTO.getName());
+        drink.setIsCustom(drinkDTO.getIsCustom());
+        drink.setIsApproved(drinkDTO.getIsApproved());
+        drink.setRecipe(drinkDTO.getRecipe());
+        drink.setDrinkType(drinkDTO.getDrinkType());
+        drink.setGlassType(drinkDTO.getGlassType());
+        drink.setModificationDate(drinkDTO.getModificationDate());
+        drink.setImageUrl(drinkDTO.getImageUrl());
+        drink.setCategory(drinkDTO.getCategory());
 
         List<Ingredient> ingredientList = new ArrayList<>();
-        drinkDto.getIngredientList().forEach(ingredientDto -> {
+        drinkDTO.getIngredientList().forEach(ingredientDto -> {
             Ingredient ingredient = IngredientDto.dtoToIngredient(ingredientDto);
             ingredientList.add(ingredient);
         });
         drink.setIngredientList(ingredientList);
         return drink;
-
     }
-
 }

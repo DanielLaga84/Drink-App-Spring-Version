@@ -45,8 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/",
                         "/adult-check*",
                         "/goodbye",
-                        "/css/**",
-                        "/scripts/**",
+                        "/static/css/**",
+                        "/static/scripts/**",
                         "/img/**"
                 ).permitAll()
                 .anyRequest().authenticated()

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor
 public class MainController {
+
     private final UserService userService;
 
     @GetMapping("/")
