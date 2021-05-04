@@ -43,7 +43,12 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public void delete(String name) {
-
+    if (drinkRepository.findByName("name") ==null) {
+        messageService.leaveMessage(1L, "Drink called '" + name + "' does not exist!");
+    } else {
+        messageService.leaveMessage(1L, "Drink called '" + name + "' has been deleted!");
+        drinkRepository.delete(drinkRepository.findByName(name));
+    }
     }
 
     @Override
