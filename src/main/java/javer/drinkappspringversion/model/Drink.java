@@ -21,7 +21,7 @@ public class Drink {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, length = 40)
+    @Column(unique = true, length = 50)
     private String name;
 
     @Column(name = "is_custom")

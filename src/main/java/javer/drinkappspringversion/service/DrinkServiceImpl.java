@@ -32,7 +32,7 @@ public class DrinkServiceImpl implements DrinkService {
                     .isCustom(true)
                     .isApproved(true)
                     .recipe(drinkDto.getRecipe())
-                    .drinkType(drinkDto.getRecipe())
+                    .drinkType(drinkDto.getDrinkType())
                     .glassType(drinkDto.getGlassType())
                     .modificationDate(String.valueOf(LocalDate.now()))
                     .imageUrl(drinkDto.getImageUrl())

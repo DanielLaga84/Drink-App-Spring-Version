@@ -3,10 +3,12 @@ package javer.drinkappspringversion.parser.mapper;
 import javer.drinkappspringversion.model.Drink;
 import javer.drinkappspringversion.parser.DrinkAPI;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@ToString
 public class DrinkMapper {
 
     private final IngredientMapper ingredientMapper;
