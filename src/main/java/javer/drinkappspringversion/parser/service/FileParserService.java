@@ -33,7 +33,7 @@ public class FileParserService {
                 if (drinkService.getAllDrinks().stream().noneMatch(drink -> drink.getName().equals(drinkAPI.getName()))) {
                     count++;
                     Drink drink = Optional
-                            .ofNullable(drinkService.get(drinkAPI.getCategory()))
+                            .ofNullable(drinkService.get(drinkAPI.getName()))
                             .orElseGet(() -> drinkMapper.mapDrink(drinkAPI));
 
                     drinkService.getAllDrinks().add(drinkMapper.mapDrink(drinkAPI));
