@@ -5,6 +5,7 @@ import javer.drinkappspringversion.model.Drink;
 import javer.drinkappspringversion.model.Role;
 import javer.drinkappspringversion.model.User;
 import javer.drinkappspringversion.repository.UserRepository;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final MessageService messageService;
 
-    public UserServiceImpl(UserRepository userRepository, DrinkService drinkService, BCryptPasswordEncoder passwordEncoder, MessageService messageService) {
+    public UserServiceImpl(UserRepository userRepository, DrinkService drinkService, @Lazy BCryptPasswordEncoder passwordEncoder, MessageService messageService) {
         this.userRepository = userRepository;
         this.drinkService = drinkService;
         this.passwordEncoder = passwordEncoder;
@@ -84,12 +85,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteFavourite(String drinkName, String userEmail) {
-    User user = get(userEmail);
-    Collection<Drink> favoriteDrinkList = user.getFavouriteDrinkList();
-    favoriteDrinkList.remove(drinkService.get(drinkName));
-    user.setFavouriteDrinkList(favoriteDrinkList);
-    userRepository.save(user);
-    messageService.leaveMessage(2L,"Drink was removed from favourite!");
+        User user = get(userEmail);
+        Collection<Drink> favoriteDrinkList = user.getFavouriteDrinkList();
+        favoriteDrinkList.remove(drinkService.get(drinkName));
+        user.setFavouriteDrinkList(favoriteDrinkList);
+        userRepository.save(user);
+        messageService.leaveMessage(2L, "Drink was removed from favourite!");
     }
 
     @Override
