@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,10 +23,10 @@ public class DrinkServiceImpl implements DrinkService {
     @Override
     public void save(DrinkDto drinkDto) {
         String drinkDtoName = drinkDto.getName();
-        if(drinkRepository.findByName(drinkDtoName) != null) {
-            messageService.leaveMessage(1L,"Drink called `" + drinkDtoName + "` already exists!");
+        if (drinkRepository.findByName(drinkDtoName) != null) {
+            messageService.leaveMessage(1L, "Drink called `" + drinkDtoName + "` already exists!");
         } else {
-            messageService.leaveMessage(1L,"Drink called `" + drinkDtoName + "` saved!");
+            messageService.leaveMessage(1L, "Drink called `" + drinkDtoName + "` saved!");
             drinkRepository.save(Drink.builder()
                     .name(drinkDto.getName())
                     .isCustom(true)
@@ -43,41 +44,52 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public void delete(String name) {
-    if (drinkRepository.findByName("name") ==null) {
-        messageService.leaveMessage(1L, "Drink called '" + name + "' does not exist!");
-    } else {
-        messageService.leaveMessage(1L, "Drink called '" + name + "' has been deleted!");
-        drinkRepository.delete(drinkRepository.findByName(name));
-    }
+        if (drinkRepository.findByName("name") == null) {
+            messageService.leaveMessage(1L, "Drink called '" + name + "' does not exist!");
+        } else {
+            messageService.leaveMessage(1L, "Drink called '" + name + "' has been deleted!");
+            drinkRepository.delete(drinkRepository.findByName(name));
+        }
     }
 
     @Override
     public Drink get(String name) {
-        return null;
+        return drinkRepository.findByName(name);
     }
 
     @Override
     public List<Drink> getAllDrinks() {
-        return null;
+        return drinkRepository.findAll();
     }
 
     @Override
     public Set<String> getUniqueGlass() {
-        return null;
+        return drinkRepository.findAll().stream().map(Drink::getGlassType).collect(Collectors.toSet());
     }
 
     @Override
     public Set<String> getUniqueCategory() {
-        return null;
+        return drinkRepository.findAll().stream().map(Drink::getCategory).collect(Collectors.toSet());
     }
 
     @Override
     public List<Integer> countsPages(Integer numberOfDrinks) {
-        return null;
+        int sizeOfDrink = getAllDrinks().size();
+        List<Integer> pages = new ArrayList<>();
+        numberOfDrinks = sizeOfDrink % numberOfDrinks == 0 ? sizeOfDrink / numberOfDrinks : sizeOfDrink / numberOfDrinks + 1;
+        for (int pageNumber = 1; pageNumber <= numberOfDrinks; pageNumber++) {
+            pages.add(pageNumber);
+        }
+        return pages;
     }
 
     @Override
     public List<Drink> getRequestDrinkList(Integer pageNumber, Integer numberOfDrinks) {
-        return null;
+        int fromIndex = (pageNumber - 1) * numberOfDrinks;
+        int toIndex = pageNumber * numberOfDrinks;
+        if (toIndex > getAllDrinks().size()) {
+            toIndex = getAllDrinks().size();
+        }
+        return getAllDrinks().subList(fromIndex, toIndex);
     }
 }
