@@ -1,4 +1,4 @@
-package javer.drinkappspringversion.service.web;
+package javer.drinkappspringversion.service.web.controller;
 
 import javer.drinkappspringversion.service.UserService;
 import lombok.RequiredArgsConstructor;
