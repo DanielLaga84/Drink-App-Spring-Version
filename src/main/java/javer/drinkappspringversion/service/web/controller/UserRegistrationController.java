@@ -1,4 +1,4 @@
-package javer.drinkappspringversion.controller;
+package javer.drinkappspringversion.service.web.controller;
 
 import javer.drinkappspringversion.dto.UserRegistrationDto;
 import javer.drinkappspringversion.service.UserService;
