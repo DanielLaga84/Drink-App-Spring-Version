@@ -17,8 +17,8 @@ import java.util.Map;
         "strInstructionsZH-HANT", "strDrinkThumb", "strCreativeCommonsConfirmed"})
 @JsonDeserialize(using = DrinkDeserializer.class)
 @Data
-@Getter@Setter
 @ToString
+@Getter@Setter
 public class DrinkAPI {
 
     @JsonProperty("idDrink")
