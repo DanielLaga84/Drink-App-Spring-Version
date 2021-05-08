@@ -13,7 +13,7 @@ Technologies used in new project :
 - Hibernate
 - Jackson
 - Json - data format
-- HTML, CSS3, JavaScript
+- HTML, CSS, JavaScript
 - Thymeleaf
 - Lombok
 
