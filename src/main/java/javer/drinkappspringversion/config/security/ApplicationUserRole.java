@@ -1,13 +1,14 @@
 package javer.drinkappspringversion.config.security;
 
+import com.google.common.collect.Sets;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public enum ApplicationUserRole {
-    STUDENT(Sets.newHashSet()),
-    ADMIN(Sets.newHashSet(COURSE_READ, COURSE_WRITE, STUDENT_READ, STUDENT_WRITE)),
+    USER(Sets.newHashSet(ApplicationUserPermission.USER_READ)),
+    ADMIN(Sets.newHashSet(ApplicationUserPermission.USER_WRITE,ApplicationUserPermission.USER_READ));
 
     private final Set<ApplicationUserPermission> permissions;
 
