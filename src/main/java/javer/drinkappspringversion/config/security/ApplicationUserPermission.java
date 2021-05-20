@@ -14,4 +14,4 @@ public enum ApplicationUserPermission {
             return permission;
         }
     }
-}
+
