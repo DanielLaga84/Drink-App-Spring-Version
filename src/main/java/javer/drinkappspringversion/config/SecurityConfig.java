@@ -4,7 +4,6 @@ import javer.drinkappspringversion.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -34,8 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
+        auth.setUserDetailsService(userService);
         return auth;
     }
 
@@ -56,6 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/scripts/**",
                         "/img/**"
                 ).permitAll()
+                .antMatchers("/admin-panel**").hasAuthority("ADMIN")
+                .antMatchers("/user**").hasAnyAuthority("ADMIN", "USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -67,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll().and().httpBasic();
     }
 
     @Override
