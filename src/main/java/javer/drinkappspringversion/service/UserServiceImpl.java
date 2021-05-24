@@ -65,6 +65,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void createUser() {
+        if (userRepository.findByEmail("daniel@localhost.pl") == null) {
+            User user = User.builder()
+                    .firstName("Daniel")
+                    .lastName("Laga")
+                    .email("daniel@localhost.pl")
+                    .password(passwordEncoder.encode("user"))
+                    .roles(Collections.singletonList(Role.builder().name("USER").build()))
+                    .build();
+            userRepository.save(user);
+        }
+    }
+
+    @Override
     public void manageFavourite(String drinkName, String userEmail) {
         if (isFavourite(drinkName, userEmail).isPresent()) {
             deleteFavourite(drinkName, userEmail);
