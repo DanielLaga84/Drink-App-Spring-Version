@@ -4,6 +4,7 @@ import javer.drinkappspringversion.service.DrinkService;
 import javer.drinkappspringversion.service.MessageService;
 import javer.drinkappspringversion.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ public class DrinkController {
     private final UserService userService;
 
     @GetMapping("/drink")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public String drinkView(@RequestParam(name = "name") String name, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication.getName().isEmpty()) {
@@ -34,6 +36,7 @@ public class DrinkController {
     }
 
     @PostMapping("favourite-drink")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public String favouriteDrink(@RequestParam(name = "name") String name, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         userService.manageFavourite(name, authentication.getName());

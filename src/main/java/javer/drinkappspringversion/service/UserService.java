@@ -15,6 +15,8 @@ public interface UserService extends UserDetailsService {
 
     void createAdmin();
 
+    void createUser();
+
     void manageFavourite(String drinkName, String userEmail);
 
     void addFavourite(String drinkName, String userEmail);

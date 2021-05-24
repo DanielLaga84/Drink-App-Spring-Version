@@ -15,6 +15,7 @@ public class MainController {
     @GetMapping("/")
     public String start() {
         userService.createAdmin();
+        userService.createUser();
         return "age-query";
     }
 
