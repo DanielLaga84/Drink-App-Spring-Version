@@ -17,7 +17,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
@@ -52,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/scripts/**",
                         "/img/**"
                 ).permitAll()
-//                .antMatchers("/admin/*").hasRole("ADMIN")
-//                .antMatchers("/user*").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/admin-panel**").hasAuthority("ADMIN")
+                .antMatchers("/user**").hasAnyAuthority("ADMIN", "USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
