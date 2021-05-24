@@ -14,13 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @Slf4j
 public class AdminController {
@@ -33,6 +34,7 @@ public class AdminController {
     private final FileDataHandlerService fileDataHandlerService;
 
     @GetMapping("/admin-panel")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String showAdminPanel(Model model) {
         addAttributes(model);
         model.addAttribute(MESSAGE, messageService.get(3L));
@@ -40,6 +42,7 @@ public class AdminController {
     }
 
     @PostMapping("json-upload")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String jsonUpload(@RequestParam(name = "drinks") Part jsonFile, Model model) {
         try {
             fileDataHandlerService.dataUploadHandler(jsonFile);
@@ -52,6 +55,7 @@ public class AdminController {
     }
 
     @PostMapping("/save-drink")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String saveDrink(
             @RequestParam(name = "name") String name,
             @RequestParam(name = "recipe") String recipe,
@@ -70,6 +74,7 @@ public class AdminController {
     }
 
     @PostMapping("/delete-drink")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String deleteDrink(
             @RequestParam(name = "name") String name,
             Model model
