@@ -33,7 +33,6 @@ public class AdminController {
     private final FileDataHandlerService fileDataHandlerService;
 
     @GetMapping("/admin-panel")
-    @PreAuthorize("hasRole('ADMIN')")
     public String showAdminPanel(Model model) {
         addAttributes(model);
         model.addAttribute(MESSAGE, messageService.get(3L));
