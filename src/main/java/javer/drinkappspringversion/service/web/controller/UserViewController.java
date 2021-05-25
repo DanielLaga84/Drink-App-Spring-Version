@@ -19,7 +19,6 @@ public class UserViewController {
     private final UserService userService;
 
     @GetMapping("/user-view")
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public String showUserView(@RequestParam Integer page, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("drinks", drinkService.getAllDrinks());
