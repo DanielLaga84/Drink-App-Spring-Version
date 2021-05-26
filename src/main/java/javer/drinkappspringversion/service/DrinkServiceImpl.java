@@ -58,7 +58,6 @@ public class DrinkServiceImpl implements DrinkService {
     @Override
     public List<Drink> getAllDrinks() {
         return drinkRepository.findAll();
-
     }
 
 

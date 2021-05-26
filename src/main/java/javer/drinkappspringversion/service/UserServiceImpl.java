@@ -13,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -111,6 +109,13 @@ public class UserServiceImpl implements UserService {
     public Optional<Drink> isFavourite(String drinkName, String userEmail) {
         return get(userEmail).getFavouriteDrinkList().stream().filter(drink -> drink.getName().equals(drinkName)).findFirst();
     }
+
+    @Override
+    public List<String> favouriteDrinkList(String userEmail) {
+        User user = userRepository.findByEmail(userEmail);
+       return user.getFavouriteDrinkList().stream().map(Drink::getName).collect(Collectors.toList());
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

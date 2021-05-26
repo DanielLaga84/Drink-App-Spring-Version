@@ -5,6 +5,7 @@ import javer.drinkappspringversion.model.Drink;
 import javer.drinkappspringversion.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
@@ -24,4 +25,7 @@ public interface UserService extends UserDetailsService {
     void deleteFavourite(String drinkName, String userEmail);
 
     Optional<Drink> isFavourite(String drinkName, String userEmail);
+
+    List<String> favouriteDrinkList(String userEmail);
+
 }
