@@ -1,4 +1,3 @@
-
 <div th:fragment="search" xmlns:th="http://www.thymeleaf.org">
     <form action="/drink" method="get">
         <input name="name" list="drink-names" class="search" type="text" placeholder="Search..."
@@ -8,6 +7,6 @@
     </form>
 
     <datalist id="drink-names">
-        <option th:each="drink : ${drinks}" th:value="${drink.getName()}">
+        <option th:each="drink : ${#lists.sort(drinks)}" th:value="${drink.getName()}">
     </datalist>
 </div>
