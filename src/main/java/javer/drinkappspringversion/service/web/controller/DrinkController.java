@@ -4,7 +4,6 @@ import javer.drinkappspringversion.service.DrinkService;
 import javer.drinkappspringversion.service.MessageService;
 import javer.drinkappspringversion.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,6 +30,7 @@ public class DrinkController {
         }
         model.addAttribute("drink", drinkService.get(name));
         model.addAttribute("drinks", drinkService.getAllDrinks());
+        model.addAttribute("drinksSorted", drinkService.getAllDrinks());
         model.addAttribute("message", messageService.get(3L));
         model.addAttribute("favourite", userService.isFavourite(name, authentication.getName()));
         return "drink-view";

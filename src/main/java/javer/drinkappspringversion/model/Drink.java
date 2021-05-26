@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "drink", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
-public class Drink {
+public class Drink implements Comparable<Drink> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,4 +55,9 @@ public class Drink {
             inverseJoinColumns = {@JoinColumn(name = "ingredient_id", referencedColumnName = "id")}
     )
     private List<Ingredient> ingredientList = new ArrayList<>();
+
+    @Override
+    public int compareTo(Drink other) {
+        return name.compareTo(other.name);
+    }
 }
