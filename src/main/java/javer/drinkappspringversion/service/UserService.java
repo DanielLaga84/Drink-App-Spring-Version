@@ -26,8 +26,8 @@ public interface UserService extends UserDetailsService {
 
     Optional<Drink> isFavourite(String drinkName, String userEmail);
 
-    List<String> favouriteDrinkList(String userEmail);
+    List<Drink> favouriteDrinkList(String userEmail);
 
     List<Integer> favCountsPages(Integer numberOfDrinks, String userEmail);
 
-    List<String> getRequestFavDrinkList(Integer pageNumber, Integer numberOfDrinks, String userEmail);}
+    List<Drink> getRequestFavDrinkList(Integer pageNumber, Integer numberOfDrinks, String userEmail);}
