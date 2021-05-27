@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!--head fragment-->
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<!--nav bar-->
+<nav class="navigation">
+    <div class="container">
+        <ul>
+            <li><a href="#load"> Welcome </a></li>
+            <li><a href="#gallery"> Drinks </a></li>
+            <li><a href="#about"> About application </a></li>
+            <li><a href="#contact"> Contacts </a></li>
+
+            <!--dropdown navigation-->
+            <li th:replace="fragments/dropdown-navigation :: dropdown-navigation"></li>
+
+            <!--drink searcher-->
+            <div th:replace="fragments/search :: search"></div>
+        </ul>
+    </div>
+</nav>
+
+<section class="splash" id="load"
+         style="background-image: url('https://images.pexels.com/photos/616836/pexels-photo-616836.jpeg?cs=srgb&dl=pexels-toni-cuenca-616836.jpg&fm=jpg');">
+
+    <div class="page-intro">
+        <div class="container">
+            <h1 class="main-title" th:text="'Welcome ' + ${user.getFirstName()} + ' ' + ${user.getLastName()}"></h1>
+        </div>
+    </div>
+</section>
+
+<section class="statement">
+    <div class="container">
+        <p>Drink or not to drink.. that is the question</p>
+    </div>
+</section>
+
+<section class="gallery" id="gallery">
+    <h2 class="section-title">Favorite Drink list</h2>
+
+    <div class="container">
+        <ul class="social-links">
+            <li th:each="page : ${favPageNumbers}"
+                style="margin-right: 20px; margin-left: 20px; width: 55px; height: 40px">
+                <form method="get" action="user-favorite-view">
+                    <input class="btn2" type="submit" name="page" th:value="${page}">
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="gallery-wrapper">
+        <figure th:each="drinks : ${drinksFav}" class="gallery-item" style="padding: 5px">
+            <img th:src="${drinks.getImageUrl()}" alt="image">
+            <a th:href="@{/drink?name={name}(name=${drinks.getName()})}">
+                <figcaption th:text="${drinks.getName()}"></figcaption>
+            </a>
+        </figure>
+    </div>
+</section>
+
+<!---->
+<!--feature to implement
+<#include "favourite-section">-->
+<!---->
+
+<section class="statement">
+    <div class="container">
+        <p>Drink or not to drink.. that is the question</p>
+    </div>
+</section>
+
+<!--about fragment-->
+<div th:replace="fragments/about :: about"></div>
+
+<section class="statement">
+    <div class="container">
+        <p>Drink or not to drink.. that is the question</p>
+    </div>
+</section>
+
+<!--contact fragment-->
+<div th:replace="fragments/contact :: contact"></div>
+
+<!--footer fragment-->
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script src="scripts/main.js"></script>
+
+</body>
+</html>

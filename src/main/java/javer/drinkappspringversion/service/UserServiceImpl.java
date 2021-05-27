@@ -13,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -113,6 +111,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<String> favouriteDrinkList(String userEmail) {
+        User user = userRepository.findByEmail(userEmail);
+       return user.getFavouriteDrinkList().stream().map(Drink::getName).collect(Collectors.toList());
+    }
+
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
         if (user == null) {
@@ -125,6 +130,25 @@ public class UserServiceImpl implements UserService {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
+    }
+    @Override
+    public List<Integer> favCountsPages(Integer numberOfDrinks, String userEmail) {
+        int sizeOfDrink = favouriteDrinkList(userEmail).size();
+        List<Integer> pages = new ArrayList<>();
+        numberOfDrinks = sizeOfDrink % numberOfDrinks == 0 ? sizeOfDrink / numberOfDrinks : sizeOfDrink / numberOfDrinks + 1;
+        for (int pageNumber = 1; pageNumber <= numberOfDrinks; pageNumber++) {
+            pages.add(pageNumber);
+        }
+        return pages;
+    }
+
+    public List<String> getRequestFavDrinkList(Integer pageNumber, Integer numberOfDrinks, String userEmail) {
+        int fromIndex = (pageNumber - 1) * numberOfDrinks;
+        int toIndex = pageNumber * numberOfDrinks;
+        if (toIndex > favouriteDrinkList(userEmail).size()) {
+            toIndex = favouriteDrinkList(userEmail).size();
+        }
+        return favouriteDrinkList(userEmail).subList(fromIndex, toIndex);
     }
 }
 
