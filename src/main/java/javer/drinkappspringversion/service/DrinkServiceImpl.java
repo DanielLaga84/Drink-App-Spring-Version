@@ -57,7 +57,9 @@ public class DrinkServiceImpl implements DrinkService {
 
     @Override
     public List<Drink> getAllDrinks() {
-        return drinkRepository.findAll();
+        List<Drink> DrinkList = drinkRepository.findAll();
+        DrinkList.sort(Comparator.comparing(Drink::getName));
+        return DrinkList;
     }
 
 
