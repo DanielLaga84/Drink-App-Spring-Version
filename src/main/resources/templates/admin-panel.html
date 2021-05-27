@@ -56,7 +56,7 @@
                                                             autocomplete="off"/><br/></label>
 
                     <datalist id="drink-names">
-                        <option th:each="drink : ${drinks}" th:value="${drink.getName()}">
+                        <option th:each="drink : ${#lists.sort(drinks)}" th:value="${drink.getName()}">
                     </datalist>
 
                     <label for="category-choice">Category: <input list="categories" id="category-choice" type="text"

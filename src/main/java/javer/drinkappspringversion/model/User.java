@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -45,6 +46,6 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "drink_id", referencedColumnName = "id")}
     )
-    private Collection<Drink> favouriteDrinkList;
+    private List<Drink> favouriteDrinkList;
 
 }

@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
         User user = get(userEmail);
         Collection<Drink> favoriteDrinkList = user.getFavouriteDrinkList();
         favoriteDrinkList.add(drinkService.get(drinkName));
-        user.setFavouriteDrinkList(favoriteDrinkList);
+        user.setFavouriteDrinkList((List<Drink>) favoriteDrinkList);
         userRepository.save(user);
         messageService.leaveMessage(2L, "Drink added to favourite!");
     }
@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService {
         User user = get(userEmail);
         Collection<Drink> favoriteDrinkList = user.getFavouriteDrinkList();
         favoriteDrinkList.remove(drinkService.get(drinkName));
-        user.setFavouriteDrinkList(favoriteDrinkList);
+        user.setFavouriteDrinkList((List<Drink>) favoriteDrinkList);
         userRepository.save(user);
         messageService.leaveMessage(2L, "Drink was removed from favourite!");
     }
@@ -111,9 +111,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> favouriteDrinkList(String userEmail) {
-        User user = userRepository.findByEmail(userEmail);
-       return user.getFavouriteDrinkList().stream().map(Drink::getName).collect(Collectors.toList());
+    public List<Drink> favouriteDrinkList(String userEmail) {
+        User user = get(userEmail);
+       return user.getFavouriteDrinkList();
     }
 
 
@@ -142,7 +142,7 @@ public class UserServiceImpl implements UserService {
         return pages;
     }
 
-    public List<String> getRequestFavDrinkList(Integer pageNumber, Integer numberOfDrinks, String userEmail) {
+    public List<Drink> getRequestFavDrinkList(Integer pageNumber, Integer numberOfDrinks, String userEmail) {
         int fromIndex = (pageNumber - 1) * numberOfDrinks;
         int toIndex = pageNumber * numberOfDrinks;
         if (toIndex > favouriteDrinkList(userEmail).size()) {
