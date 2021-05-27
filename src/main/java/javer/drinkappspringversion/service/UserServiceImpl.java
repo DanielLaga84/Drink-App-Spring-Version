@@ -113,7 +113,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Drink> favouriteDrinkList(String userEmail) {
         User user = get(userEmail);
-       return user.getFavouriteDrinkList();
+        List<Drink> favouriteDrinkList = user.getFavouriteDrinkList();
+        favouriteDrinkList.sort(Comparator.comparing(Drink::getName));
+        return favouriteDrinkList;
     }
 
 
@@ -131,6 +133,7 @@ public class UserServiceImpl implements UserService {
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
     }
+
     @Override
     public List<Integer> favCountsPages(Integer numberOfDrinks, String userEmail) {
         int sizeOfDrink = favouriteDrinkList(userEmail).size();
