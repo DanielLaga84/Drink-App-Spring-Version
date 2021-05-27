@@ -45,7 +45,7 @@
 
     <div class="container">
         <ul class="social-links">
-            <li th:each="page : ${pageNumbers}"
+            <li th:each="page : ${favPageNumbers}"
                 style="margin-right: 20px; margin-left: 20px; width: 55px; height: 40px">
                 <form method="get" action="user-favorite-view">
                     <input class="btn2" type="submit" name="page" th:value="${page}">
@@ -55,10 +55,10 @@
     </div>
 
     <div class="gallery-wrapper">
-        <figure th:each="drinksFav : ${requestDrinks}" class="gallery-item" style="padding: 5px">
-            <img th:src="${drinksFav.getImageUrl()}" alt="image">
-            <a th:href="@{/drinksFav?name={name}(name=${drinksFav.getName()})}">
-                <figcaption th:text="${drinksFav.getName()}"></figcaption>
+        <figure th:each="drinks : ${drinksFav}" class="gallery-item" style="padding: 5px">
+            <img th:src="${drinks.getImageUrl()}" alt="image">
+            <a th:href="@{/drink?name={name}(name=${drinks.getName()})}">
+                <figcaption th:text="${drinks.getName()}"></figcaption>
             </a>
         </figure>
     </div>

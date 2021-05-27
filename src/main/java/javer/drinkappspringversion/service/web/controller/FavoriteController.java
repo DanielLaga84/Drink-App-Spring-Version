@@ -24,6 +24,8 @@ public class FavoriteController {
         model.addAttribute("drinksFav", userService.get(authentication.getName()).getFavouriteDrinkList());
         model.addAttribute("pageNumbers", drinkService.countsPages(8));
         model.addAttribute("requestDrinks", drinkService.getRequestDrinkList(page, 8));
+        model.addAttribute("favPageNumbers", userService.favCountsPages(8,authentication.getName()));
+        model.addAttribute("favRequestDrinks", userService.getRequestFavDrinkList(page, 8, authentication.getName()));
         model.addAttribute("user", userService.get(authentication.getName()));
         return "user-favorite-view";
     }

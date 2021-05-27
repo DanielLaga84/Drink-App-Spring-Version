@@ -28,4 +28,6 @@ public interface UserService extends UserDetailsService {
 
     List<String> favouriteDrinkList(String userEmail);
 
-}
+    List<Integer> favCountsPages(Integer numberOfDrinks, String userEmail);
+
+    List<String> getRequestFavDrinkList(Integer pageNumber, Integer numberOfDrinks, String userEmail);}

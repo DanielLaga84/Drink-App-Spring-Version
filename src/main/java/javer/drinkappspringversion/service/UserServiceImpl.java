@@ -131,5 +131,24 @@ public class UserServiceImpl implements UserService {
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
     }
+    @Override
+    public List<Integer> favCountsPages(Integer numberOfDrinks, String userEmail) {
+        int sizeOfDrink = favouriteDrinkList(userEmail).size();
+        List<Integer> pages = new ArrayList<>();
+        numberOfDrinks = sizeOfDrink % numberOfDrinks == 0 ? sizeOfDrink / numberOfDrinks : sizeOfDrink / numberOfDrinks + 1;
+        for (int pageNumber = 1; pageNumber <= numberOfDrinks; pageNumber++) {
+            pages.add(pageNumber);
+        }
+        return pages;
+    }
+
+    public List<String> getRequestFavDrinkList(Integer pageNumber, Integer numberOfDrinks, String userEmail) {
+        int fromIndex = (pageNumber - 1) * numberOfDrinks;
+        int toIndex = pageNumber * numberOfDrinks;
+        if (toIndex > favouriteDrinkList(userEmail).size()) {
+            toIndex = favouriteDrinkList(userEmail).size();
+        }
+        return favouriteDrinkList(userEmail).subList(fromIndex, toIndex);
+    }
 }
 
