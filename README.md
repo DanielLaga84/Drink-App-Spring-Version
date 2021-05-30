@@ -16,4 +16,5 @@ Technologies used in new project :
 - HTML, CSS, JavaScript
 - Thymeleaf
 - Lombok
+- Guava
 
