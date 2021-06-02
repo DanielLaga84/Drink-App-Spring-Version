@@ -18,3 +18,18 @@ Technologies used in new project :
 - Lombok
 - Guava
 
+To start application just clone repository with comand : 
+git clone https://github.com/DanielLaga84/Drink-App-Spring-Version/ . 
+
+Than just run application with DrinkAppSpringVersionApplication .
+
+Open browser and type : http://localhost:8080/ .
+
+Thank you have access to site. 
+If you are over 18+ click on option and login into accounts :
+ADMIN - admin@localhost.pl password : admin
+
+USER - you can create user by yourself or just use one existing. 
+        daniel@localhost.pl password : user
+        
+Enjoy the app and drinks !
