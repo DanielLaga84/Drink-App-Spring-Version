@@ -33,3 +33,4 @@ USER - you can create user by yourself or just use one existing.
         daniel@localhost.pl password : user
         
 Enjoy the app and drinks !
+Cheers!
