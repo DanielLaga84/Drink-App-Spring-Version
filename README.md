@@ -25,8 +25,9 @@ Than just run application with DrinkAppSpringVersionApplication .
 
 Open browser and type : http://localhost:8080/ .
 
-Thank you have access to site. 
-If you are over 18+ click on option and login into accounts :
+Now you have access to site. 
+If you are over 18+ click on option and login into one of aviable account :
+
 ADMIN - admin@localhost.pl password : admin
 
 USER - you can create user by yourself or just use one existing. 
